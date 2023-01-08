@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use mysql_xdevapi\Result;
 
 class MenuController extends Controller
 {
@@ -45,7 +46,12 @@ class MenuController extends Controller
             ->select('MenuHDR_description')
             ->where('MenuHDR_id','=',$menu_hdr)
             ->get();
-        return view('Menu/menu_detail',['food'=>$result,'menu_desc'=>$menu_hdr_desc,'menu_id'=>$menu_hdr]);
+        $item = DB::table('item')
+            ->join('itemcategory','itemcategory.itemCtg_id','=','item.item_category')
+            ->select('item.*','itemcategory.itemCtg_description')
+            ->where('item.create_by', '=', Auth::user()->admin_restaurant)
+            ->get();
+        return view('Menu/menu_detail',['food'=>$result,'menu_desc'=>$menu_hdr_desc,'menu_id'=>$menu_hdr, 'item'=>$item]);
 //        return response($menu_hdr_desc);
     }
 
@@ -59,6 +65,8 @@ class MenuController extends Controller
                 ->insert([
                     'MenuHDR_description' => $menu_group_description,
                     'branch_id' => $branch_id,
+                    'MenuHDR_startAt'=> now(),
+                    'MenuHDR_endAt'=> now(),
                     'MenuHDR_createBy' => Auth::user()->admin_restaurant
                 ]);
             return redirect('/menu/menu_list');
@@ -84,6 +92,43 @@ class MenuController extends Controller
         return redirect('/item/item_category');
     }
 
+    public function storeItemtoMenu(Request $request){
+        $menu_id = request('menu_id');
+        $item_code = request('item_code');
+        foreach($item_code as $item) {
+            // Perform actions on each selected item
+            $itemStore = DB::table('item')
+                ->select('*')
+                ->where('item_code', '=', $item)
+                ->where('item.create_by', '=', Auth::user()->admin_restaurant)
+                ->first();
+            $result = DB::table('menudtl')
+                ->insert([
+                    'MenuHDR_id' => $menu_id,
+                    'MenuDtl_itemID' => $itemStore->item_code,
+                    'MenuDtl_description' => $itemStore->item_description,
+                    'category_code' => $itemStore->item_category,
+                    'MenuDtl_price' => $itemStore->item_ref_price,
+                    'MenuHDR_createBy' => Auth::user()->admin_restaurant
+                ]);
+        }
+
+        return redirect('/menu/menu_list/detail/'.$menu_id.'');
+    }
+
+    public function MenuDtlList(Request $request){
+        $menu_id = request('menu_id');
+        $result = DB::table('menudtl')
+//            ->join('menuhdr','menuhdr.MenuHDR_id','=','menudtl.MenuDtl_id')
+            ->join('itemcategory','itemcategory.itemCtg_id','=','menudtl.category_code')
+            ->select('itemcategory.itemCtg_description','menudtl.*')
+            ->where('menudtl.MenuHDR_id', '=', $menu_id)
+            ->where('menudtl.MenuHDR_createBy', '=', Auth::user()->admin_restaurant)
+            ->get();
+
+        return response($result);
+    }
+
     public function active(Request $request)
     {
         $itemCtg_id = request('itemCtg_id');
@@ -106,16 +151,18 @@ class MenuController extends Controller
 
     public function update(Request $request)
     {
-        $itemCtg_id = request('edit_itmCtg_id');
-        $itemCtg_description = request('edit_itmCtg_description');
+        $menu_id = request('menu_id');
+        $item_price = request('edit_price');
+        $item_code = request('edit_item_code');
 
 
-        $update_itemCtg = DB::table('itemcategory')
-            ->where('itemCtg_id', '=', $itemCtg_id)
-            ->update(['itemCtg_description' => $itemCtg_description]);
+        $update_menuDtl = DB::table('menudtl')
+            ->where('MenuHDR_id', '=', $menu_id)
+            ->where('MenuDtl_itemID', '=', $item_code)
+            ->update(['MenuDtl_price' => $item_price]);
 
-        return redirect(url('/item/item_category'));
-//        return response($itemCtg_description);
+        return redirect('/menu/menu_list/detail/'.$menu_id.'');
+//        return response($item_code);
     }
 
     public function destroy(Request $request)

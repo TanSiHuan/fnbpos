@@ -96,7 +96,7 @@
                                             <div class="form-group">
                                                 <label for="staff_branch">Branch</label>
                                                 <select class="form-control" name="staff_branch" id="staff_branch" required>
-                                                    <option value="">Please Select a Category</option>
+                                                    <option value="">Please Select a Branch</option>
                                                     @foreach($branch as $branch_list)
                                                         <option value="{{$branch_list->branch_id}}">{{$branch_list->branch_name}}</option>
                                                     @endforeach
@@ -181,7 +181,7 @@
                                                 <div class="form-group">
                                                     <label for="staff_branch">Branch</label>
                                                     <select class="form-control" name="staff_branch" id="staff_branch" required>
-                                                        <option value="">Please Select a Category</option>
+                                                        <option value="">Please Select a Branch</option>
                                                         @foreach($branch as $branch_list)
                                                             <option value="{{$branch_list->branch_id}}">{{$branch_list->branch_name}}</option>
                                                         @endforeach

@@ -66,33 +66,21 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="edit">Edit Staff</h5>
+                                        <h5 class="modal-title" id="edit">Edit Price</h5>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
-                                    <form action="{{route('itemMaster_create_update')}}" method="post" id="branch_edit" enctype="multipart/form-data">
+                                    <form action="{{url('menu/menu_list/detail/'.$menu_id.'/updateItem')}}" method="post" id="branch_edit" enctype="multipart/form-data">
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="edit_staff_name">Staff Name</label>
-                                                <input type="text" class="form-control" id="edit_staff_name" name="edit_staff_name"
+                                                <label for="edit_price">Price</label>
+                                                <input type="text" class="form-control" id="edit_item_code" name="edit_item_code"
+                                                       required="required" hidden>
+                                                <input type="number" min="0" max="99999999" class="form-control" id="edit_price" name="edit_price"
                                                        required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="edit_staff_email">Staff Email</label>
-                                                <input type="text" class="form-control" id="edit_staff_email" name="edit_staff_email"
-                                                       required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="edit_staff_password">Staff Password</label>
-                                                <input type="password" class="form-control" id="edit_staff_password" name="edit_staff_password"
-                                                       required="required">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="edit_staff_contact">Staff Contact</label>
-                                                <input type="number" step="0.01" class="form-control" id="edit_staff_contact" name="edit_staff_contact"
-                                                       required="required">
+
                                             </div>
 
                                         </div>
@@ -125,43 +113,52 @@
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Menu Detail</h4>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Add Item to Menu</button>
-                        <div class="modal fade" id="exampleModalCenter" aria-hidden="true" style="display: none;">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Add Item to Menu</button>
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Add Item to Menu</h5>
                                         <button type="button" class="close" data-dismiss="modal"><span>×</span>
                                         </button>
                                     </div>
+                                    <form action="{{url('menu/menu_list/detail/'.$menu_id.'/storeItem')}}" method="post" id="item_store" enctype="multipart/form-data">
+                                        @csrf
                                     <div class="modal-body">
-                                        <table>
-                                            <thead>
-                                            <tr>
-                                                <th>Select</th>
-                                                <th>Menu Group Description</th>
-                                                <th>Branch</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td><input type="checkbox"></td>
-                                                <td>Group 1</td>
-                                                <td>Branch 1</td>
-                                            </tr>
-                                            <tr>
-                                                <td><input type="checkbox"></td>
-                                                <td>Group 2</td>
-                                                <td>Branch 2</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th>Select</th>
+                                                    <th>Item Code</th>
+                                                    <th>Item Description</th>
+                                                    <th>Price</th>
+                                                    <th>Category</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                @foreach($item as $items)
+                                                                                    <tr>
+                                                                                        <td><input value="{{$items->item_code}}" name="item_code[]" type="checkbox"></td>
+                                                                                        <td>{{$items->item_code}}</td>
+                                                                                        <td>{{$items->item_description}}</td>
+                                                                                        <td>{{$items->item_ref_price}}</td>
+                                                                                        <td>{{$items->itemCtg_description}}</td>
+                                                                                    </tr>
+                                                                                @endforeach
+                                                </tbody>
+                                                <tfoot>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                         </button>
-                                        <button type="button" class="btn btn-primary" onclick="addSelectedToMenu()">Select</button>
+                                        <button type="submit" name="submit" class="btn btn-primary">Select</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -171,8 +168,11 @@
                             <table id="baseTable" class="display" style="min-width: 845px">
                                 <thead>
                                 <tr>
-                                    <th>Description</th>
-                                    <th>Branch Name</th>
+                                    <th>Item Code</th>
+                                    <th>Item Description</th>
+                                    <th>Category</th>
+{{--                                    <th>Modifier Group</th>--}}
+                                    <th>Price</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -263,50 +263,60 @@
             stateSave: true,
             destroy: true,
             "ajax": {
-                "url": "{{url('menu/menu_list_group')}}",
+                "url": "{{url('menu/menu_list/detail/'.$menu_id.'/menudtllist')}}",
                 "type": "GET",
                 'data': "",
                 "dataSrc": "",
             },
-            // <th>Staff ID</th>
-            // <th>Staff Name</th>
-            // <th>Staff Email</th>
-            // <th>Staff Contact</th>
-            // <th>Staff Branch</th>
-            // <th>Created At</th>
-            // <th>Updated At</th>
-            // <th>Active</th>
-            // <th>Action</th>
+        // <th>Item Code</th>
+        // <th>Item Description</th>
+        // <th>Category</th>
+        // <th>Modifier Group</th>
+        // <th>Price</th>
+        // <th>Action</th>
             "columns": [{
-                "data": "MenuHDR_description"
+                "data": "MenuDtl_itemID"
             },
                 {
-                    "data": "branch_name"
+                    "data": "MenuDtl_description"
                 },
                 {
-                    data: 'MenuHDR_id',
+                    "data": "itemCtg_description"
+                },
+                // {
+                //     "data": "modifier_grp_code"
+                // },
+                {
+                    "data": "MenuDtl_price"
+                },
+                {
+                    data: 'MenuDtl_id',
                     "class": "cbcell",
-                    "render": function (MenuHDR_id) {
+                    "render": function (MenuDtl_id) {
                         return '<button type="button" id="action" class="btn btn-primary" data-toggle="modal" data-target="#Action">Action</button>';
                     }
                 },
             ],
         });
+
+
         baseTable.on("click", "td button[id=action]", function() {
 
 
 
             var data = baseTable.row($(this).closest("tr")).data();
-            document.getElementById('edit_staff_name').value = data['staff_name'];
-            document.getElementById('edit_staff_contact').value = data['staff_contact'];
-            document.getElementById('edit_staff_email').value = data['staff_email'];
-            document.getElementById('edit_staff_password').value = data['staff_password'];
-            document.getElementById('edit_staff_branch').value = data['item_price'];
+            document.getElementById('edit_price').value = data['MenuDtl_price'];
+            document.getElementById('edit_item_code').value = data['MenuDtl_itemID'];
 
             let item_code = data['item_code'];
 
             $(document).on("click","#delete", function(){
                 window.location.href = "{{url('item/item_master_destroy').'/'}}"+item_code;
+                console.log(item_code);
+            });
+
+            $(document).on("click","#active", function(){
+                window.location.href = "{{url('item/item_master_active').'/'}}"+item_code;
                 console.log(item_code);
             });
 

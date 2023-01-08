@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0cb55a3-531c-4b58-b2b8-cb9531f2578b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/fnbpos.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MenuController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_09_06_075601_menu_dtl.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_09_06_075601_menu_dtl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Menu/menu_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Menu/menu_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/Staff/staff_list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Staff/staff_list.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/side_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/side_nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/top_nav.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/top_nav.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +22,11 @@
     <execution />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
@@ -214,45 +223,69 @@
       <workItem from="1672210623186" duration="2339000" />
       <workItem from="1672213117822" duration="1856000" />
       <workItem from="1672382880774" duration="2496000" />
-      <workItem from="1672671999649" duration="2803000" />
+      <workItem from="1672671999649" duration="3557000" />
+      <workItem from="1672759889335" duration="626000" />
+      <workItem from="1673199521473" duration="13377000" />
     </task>
+    <task id="LOCAL-00001" summary="fnb pos system">
+      <created>1672681281989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672681281989</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="fnb pos system" />
+    <option name="LAST_COMMIT_MESSAGE" value="fnb pos system" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1668389045688">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="624" y="211" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1673206534916">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="499" y="167" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1536.824@0.0.1536.824" timestamp="1668389045688" />
-    <state x="391" y="0" key="CommitChangelistDialog2" timestamp="1672212864956">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="624" y="211" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1673206534916" />
+    <state x="489" y="0" key="CommitChangelistDialog2" timestamp="1672681274701">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="391" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1672212864956" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1672213054384">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="489" y="0" key="CommitChangelistDialog2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672681274701" />
+    <state x="686" y="211" key="FileChooserDialogImpl" timestamp="1672680696541">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1672213054384" />
-    <state x="645" y="314" width="245" height="267" key="Github.ShareDialog" timestamp="1672212980377">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="686" y="211" key="FileChooserDialogImpl/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672680696541" />
+    <state x="806" y="396" width="245" height="267" key="Github.ShareDialog" timestamp="1672680714484">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="645" y="314" width="245" height="267" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1672212980377" />
+    <state x="806" y="396" key="Github.ShareDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672680714484" />
+    <state x="806" y="135" key="Github.UntrackedFilesDialog" timestamp="1672680721382">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="806" y="135" key="Github.UntrackedFilesDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672680721382" />
     <state x="604" y="332" key="NewPhpFileDialog" timestamp="1670567646547">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="604" y="332" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1670567646547" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1672212833564">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="451" y="178" key="Vcs.Push.Dialog.v2" timestamp="1672681422988">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1672212833564" />
+    <state x="451" y="178" key="Vcs.Push.Dialog.v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672681422988" />
     <state x="640" y="257" key="cloudConfig.SelfSettingsDialog" timestamp="1672212652644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="640" y="257" key="cloudConfig.SelfSettingsDialog/0.0.1536.824@0.0.1536.824" timestamp="1672212652644" />
+    <state x="777" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1672680765508">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="777" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1672680765508" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1669358021366">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

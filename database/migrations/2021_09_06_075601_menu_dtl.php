@@ -14,13 +14,14 @@ class MenuDtl extends Migration
     public function up()
     {
         Schema::create('MenuDtl', function (Blueprint $table) {
-            $table->string('MenuDtl_id')->primary();
+            $table->increments('MenuDtl_id');
             $table->string('MenuHDR_id');
             $table->string('MenuDtl_itemID');
             $table->string('MenuDtl_description');
             $table->string('category_code');
-            $table->string('modifier_grp_code');
-            $table->time('MenuHDR_createBy'); //restaurant
+            $table->string('modifier_grp_code')->nullable();
+            $table->decimal('MenuDtl_price',14);
+            $table->string('MenuHDR_createBy'); //restaurant
             $table->timestamps();
         });
     }
